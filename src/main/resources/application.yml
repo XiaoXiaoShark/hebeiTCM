@@ -37,7 +37,7 @@ spring:
 mybatis:
   #  config-location: classpath:mybatis/mybatis-config.xml
   #  设置实体类
-  type-aliases-package: com.hry.springboot.tutorials.model
+  type-aliases-package: com.lanqiao.hebeitcm.model
 # 分页
 pagehelper:
   helperDialect: mysql
