@@ -1,6 +1,6 @@
 spring:
   application:
-    name: springboot-tutorials
+    name: springboot-hebei-tcm
   thymeleaf:
     # prefix: classpath:/templates # 默认 thymeleaf 模板页面所在位置
     cache: false
@@ -64,5 +64,5 @@ logging:
     file: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
     console: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
   file:
-    name: tutorials.log
+    name: hebeitcm.log
 #    path: #日志文件存入的目录
