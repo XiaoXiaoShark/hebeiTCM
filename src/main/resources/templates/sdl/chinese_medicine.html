@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>名老中医</title>
+    <!-- Bootstrap -->
+    <link th:href="@{/component/bootstrap-3.3.7/css/bootstrap.min.css}"
+          href="../../static/component/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link th:href="@{/component/inspinia/css/plugins/sweetalert/sweetalert.css}"
+          href="../../static/component/inspinia/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script th:src="@{/component/jquery-2.2.4.js}"
+            src="../../static/component/jquery-2.2.4.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script th:src="@{/component/bootstrap-3.3.7/js/bootstrap.min.js}"
+            src="../../static/component/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .input-group{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .row{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .thead{
+            background-color: saddlebrown;
+            color: #ffffff;
+        }
+        .table tr{
+            border-collapse: collapse;
+            height: 50px;
+        }
+        .table th{
+            text-align:center;
+            vertical-align: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!--    搜索框-->
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="">
+                <span class="input-group-addon" onclick="fswitch('advSearch');" style="cursor:hand;color:darkred;">搜索</span>
+            </div>
+        </div>
+    </div>
+    <HR style="border-top: 1px dashed #8f8d8d">
+
+    <!--    其他选项-->
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+                <div class="input-group">
+                    <span class="input-group-addon">其他选项：</span>
+                    <span class="input-group-addon">展示状态：</span>
+                    <select  class="form-control">
+                        <option value="">---- 请选择 ----</option>
+                        <option value="10">展示中</option>
+                        <option value="20">已下架</option>>
+                    </select>
+                    <span class="input-group-addon">专家类别：</span>
+                    <select  class="form-control">
+                        <option value="">---- 请选择 ----</option>
+                        <option value="">医学大师</option>
+                        <option value="">国家级名老中医</option>
+                        <option value="">河北名省老中医</option>
+                    </select>
+
+                </div>
+                <div class="input-group">
+                    <button type="button" class="btn btn-default" onclick="">新增名老中医</button>
+                </div>
+        </div>
+    </div>
+
+    <!--    专家列表-->
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <table class="table" >
+                <thead class="thead">
+                <tr>
+                    <th>
+                        专家名称
+                    </th>
+                    <th>
+                        专家照片
+                    </th>
+                    <th>
+                        所属科室
+                    </th>
+                    <th>
+                        所属医院
+                    </th>
+                    <th>
+                        联系电话
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- 列表迭代 -->
+                <tr th:each="cm,status : ${chineseMedicinesList}">
+                    <td th:text="${cm.chineseMedicineName}"></td>
+                    <td></td>
+                    <td th:text="${cm.specialty.specialtyName}"></td>
+                    <td th:text="${cm.hosp.hospitalName}"></td>
+                    <td th:text="${cm.phone}"></td>
+                    <td>
+
+                    </td>
+                </tr>
+                <!-- 当作为模板解析时，会被删除 -->
+                <tr th:remove="all">
+                    <td>李英林</td>
+                    <td><img src=""></td>
+                    <td>儿科</td>
+                    <td>河北省中医院</td>
+                    <td>0316-64854537</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+<!--            <nav aria-label="Page navigation" class="text-center" style="margin: 0px;padding: 0px;">-->
+<!--                <ul class="pagination">-->
+<!--                    <li th:if="${employeeList.pageNum le employeeList.pages}">-->
+<!--                        <a th:href="@{/emps(pageNum=1)}" aria-label="Previous">-->
+<!--                            <span aria-hidden="true">&laquo;</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${employeeList.pageNum}>1">-->
+<!--                        <a th:href="@{/emps(pageNum=${employeeList.pageNum}-1)}">&lt;</a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${employeeList.pageNum-3 gt 1}">-->
+<!--                        <a th:text="${employeeList.pageNum-4}" th:href="@{/emps(pageNum=${employeeList.pageNum}-4)}"></a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${employeeList.pageNum-2 gt 1}">-->
+<!--                        <a th:text="${employeeList.pageNum-3}" th:href="@{/emps(pageNum=${employeeList.pageNum}-3)}"></a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${employeeList.pageNum-1 gt 1}">-->
+<!--                        <a th:text="${employeeList.pageNum-2}" th:href="@{/emps(pageNum=${employeeList.pageNum}-2)}"></a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${employeeList.pageNum gt 1}" >-->
+<!--                        <a th:text="${employeeList.pageNum-1}" th:href="@{/emps(pageNum=${employeeList.pageNum}-1)}"></a>-->
+<!--                    </li>-->
+<!--                    &lt;!&ndash;/* 当前页 */&ndash;&gt;-->
+<!--                    <li th:if="${employeeList.pageNum le employeeList.pages}" th:class="${employeeList.pageNum le employeeList.pages ? 'active':''}">-->
+<!--                        <a th:text="${employeeList.pageNum}" th:href="@{/emps(pageNum=${employeeList.pageNum})}"></a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${employeeList.pageNum+1 le employeeList.pages}">-->
+<!--                        <a th:text="${employeeList.pageNum+1}" th:href="@{/emps(pageNum=${employeeList.pageNum}+1)}"></a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${employeeList.pageNum+2 le employeeList.pages}">-->
+<!--                        <a th:text="${employeeList.pageNum+2}" th:href="@{/emps(pageNum=${employeeList.pageNum}+2)}"></a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${employeeList.pageNum+3 le employeeList.pages}">-->
+<!--                        <a th:text="${employeeList.pageNum+3}" th:href="@{/emps(pageNum=${employeeList.pageNum}+3)}"></a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${employeeList.pageNum lt employeeList.pages}">-->
+<!--                        <a th:href="@{/emps(pageNum=${employeeList.pageNum}+1)}">&gt;</a>-->
+<!--                    </li>-->
+<!--                    <li th:if="${employeeList.pageNum lt employeeList.pages}">-->
+<!--                        <a th:href="@{/emps(pageNum=${employeeList.pages})}" aria-label="Next">-->
+<!--                            <span aria-hidden="true">&raquo;</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </nav>-->
+        </div>
+    </div>
+</div>
+</body>
+</html>

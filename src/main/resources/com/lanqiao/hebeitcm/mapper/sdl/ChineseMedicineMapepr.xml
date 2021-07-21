@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.tutorials.mapper.EmployeeMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.tutorials.model.Employee">
+            <id property="empno" column="empno" jdbcType="INTEGER"/>
+            <result property="ename" column="ename" jdbcType="VARCHAR"/>
+            <result property="job" column="job" jdbcType="VARCHAR"/>
+            <result property="mgr" column="mgr" jdbcType="INTEGER"/>
+            <result property="hiredate" column="hiredate" jdbcType="DATE"/>
+            <result property="sal" column="sal" jdbcType="DOUBLE"/>
+            <result property="comm" column="comm" jdbcType="DOUBLE"/>
+            <result property="deptno" column="deptno" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        empno,
+        ename,
+        job,
+        mgr,
+        hiredate,
+        sal,
+        comm,
+        deptno
+    </sql>
+
+    <select id="select" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from employee
+        <where>
+            <if test="emp.ename != null and emp.ename.trim().length()>0">
+                <bind name="enamePattern" value="'%' + emp.ename + '%'"/>
+                AND ENAME like #{enamePattern}
+            </if>
+            <if test="emp.job != null and emp.job.trim().length()>0">
+                AND JOB=#{emp.job}
+            </if>
+            <if test="emp.deptno != null">
+                AND DEPTNO=#{emp.deptno}
+            </if>
+        </where>
+    </select>
+
+    <!--  按编号查询  -->
+    <select id="selectById" parameterType="int" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from employee
+        where empno=#{value}
+    </select>
+
+
+</mapper>
