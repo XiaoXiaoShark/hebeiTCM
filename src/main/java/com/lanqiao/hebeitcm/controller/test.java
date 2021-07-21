@@ -5,5 +5,8 @@ package com.lanqiao.hebeitcm.controller;
  * @create 2021-07-21 11:10
  */
 public class test {
-    // 测试用，可以删掉
+    // 测试用，可以
+    public static void main(String[] args) {
+        System.out.println("test-->li");
+    }
 }
