@@ -2,20 +2,20 @@ spring:
   application:
     name: springboot-tutorials
   thymeleaf:
-    # prefix: classpath:/templates # Ä¬ÈÏ thymeleaf Ä£°åÒ³ÃæËùÔÚÎ»ÖÃ
+    # prefix: classpath:/templates # é»˜è®¤ thymeleaf æ¨¡æ¿é¡µé¢æ‰€åœ¨ä½ç½®
     cache: false
     encoding: utf-8
-    # ÈÈ²¿Êğ, ĞŞ¸ÄÀàºÍ×ÊÔ´Ê±²»ÖØÆô·şÎñ
+    # çƒ­éƒ¨ç½², ä¿®æ”¹ç±»å’Œèµ„æºæ—¶ä¸é‡å¯æœåŠ¡
   devtools:
     restart:
-      enabled: true  #ÉèÖÃ¿ªÆôÈÈ²¿Êğ
-      additional-paths: src/main/java  #ÖØÆôÄ¿Â¼
-      exclude: static/**  #ÉèÖÃclasspathÏÂ staticÄ¿Â¼ÄÚÈİĞŞ¸Äºó²»ÖØÆô¡£Ò»°ãÉèÖÃÎª¾²Ì¬×ÊÔ´Ä¿Â¼
+      enabled: true  #è®¾ç½®å¼€å¯çƒ­éƒ¨ç½²
+      additional-paths: src/main/java  #é‡å¯ç›®å½•
+      exclude: static/**  #è®¾ç½®classpathä¸‹ staticç›®å½•å†…å®¹ä¿®æ”¹åä¸é‡å¯ã€‚ä¸€èˆ¬è®¾ç½®ä¸ºé™æ€èµ„æºç›®å½•
     freemarker:
-      cache: false  #Ò³Ãæ²»¼ÓÔØ»º´æ£¬ĞŞ¸Ä¼´Ê±ÉúĞ§
+      cache: false  #é¡µé¢ä¸åŠ è½½ç¼“å­˜ï¼Œä¿®æ”¹å³æ—¶ç”Ÿæ•ˆ
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/scott?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/culpro?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC
     username: root
     password: 123456
     type: com.zaxxer.hikari.HikariDataSource
@@ -29,16 +29,16 @@ spring:
       connection-timeout: 30000
       connection-test-query: SELECT 1
 
-  # ¿ªÆômvcµÄHiddenHttpMethodFilter£¬ÒÔ±ã¿ÉÒÔ±íµ¥¿ÉÒÔ·¢ËÍPUT¡¢DELETEµÈÇëÇó
+  # å¼€å¯mvcçš„HiddenHttpMethodFilterï¼Œä»¥ä¾¿å¯ä»¥è¡¨å•å¯ä»¥å‘é€PUTã€DELETEç­‰è¯·æ±‚
   mvc:
     hiddenmethod:
       filter:
         enabled: true
 mybatis:
   #  config-location: classpath:mybatis/mybatis-config.xml
-  #  ÉèÖÃÊµÌåÀà
-  type-aliases-package: com.hry.springboot.tutorials.model
-# ·ÖÒ³
+  #  è®¾ç½®å®ä½“ç±»
+  type-aliases-package: com.lanqiao.hebeitcm.model
+# åˆ†é¡µ
 pagehelper:
   helperDialect: mysql
   offsetAsPageNum: true
@@ -47,14 +47,14 @@ pagehelper:
   supportMethodsArguments: true
   returnPageInfo: true
   params: count=countSql
-# ¿ª·ÅËùÓĞµÄ Web endpoints
+# å¼€æ”¾æ‰€æœ‰çš„ Web endpoints
 management:
   endpoints:
     web:
       exposure:
         include: '*'
 
-# Êä³ö mybatis SQLÈÕÖ¾
+# è¾“å‡º mybatis SQLæ—¥å¿—
 logging:
   level:
     root: INFO
@@ -67,4 +67,4 @@ logging:
   # \u65E5\u5FD7\u6587\u4EF6
   file:
     name: tutorials.log
-    #    path: #ÈÕÖ¾ÎÄ¼ş´æÈëµÄÄ¿Â¼
+#    path: #æ—¥å¿—æ–‡ä»¶å­˜å…¥çš„ç›®å½•
