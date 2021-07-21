@@ -54,7 +54,8 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <!--<scope>runtime</scope>-->
+            <version>8.0.21</version>
         </dependency>
         <!-- 自动加载SpringBoot的更改无需重启引导类 -->
         <dependency>
