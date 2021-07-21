@@ -6,4 +6,5 @@ package com.lanqiao.hebeitcm.service.impl;
  */
 public class test {
     // 测试用，可以删掉
+    int a;
 }
