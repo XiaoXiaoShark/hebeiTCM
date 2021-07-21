@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lanqiao.hebeitcm.mapper.dcw.chineseMedicalInstitution.CMIMapper">
+
+
+    <sql id="Base_Column_List">
+        hospital_name,
+        hospital_level,
+        hospital_key_specialty,
+        hospital_brief_introduce,
+        hospital_introduce,
+        hospital_telephone,
+        hospital_addredd_pro,
+        hospital_address_city,
+        hospital_address_country,
+        hospital_address,
+        hospital_link,
+        hospital_status,
+        creater,
+        itemCreateAt,
+        itemUpdateAt,
+        org_code
+    </sql>
+
+    <insert id="CMIEntry" parameterType="com.lanqiao.hebeitcm.model.dcw.chineseMedicalInstitution.CMIInfo">
+         insert into
+         tb_culpro_hosp
+         (hospital_name,
+         hospital_level,
+         hospital_brief_introduce,
+         hospital_key_specialty,
+         hospital_telephone,
+         hospital_link,
+         hospital_address,
+         hospital_introduce)
+         values
+         (#{hospital_name},
+         #{hospital_level},
+         #{hospital_brief_introduce},
+         #{hospital_key_specialty},
+         #{hospital_telephone},
+         #{hospital_link},
+         #{hospital_address},
+         #{hospital_introduce})
+    </insert>
+</mapper>
