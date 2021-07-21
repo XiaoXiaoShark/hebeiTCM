@@ -58,7 +58,7 @@ management:
 logging:
   level:
     root: INFO
-    com.hry.springboot.tutorials.mapper: DEBUG
+    com.lanqiao.hebeitcm.mapper: DEBUG
 
   #    path: /Users/jamesmac/projects/SpringBootProjects/springboot-tutorials
   pattern:
@@ -66,5 +66,5 @@ logging:
     console: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
   # \u65E5\u5FD7\u6587\u4EF6
   file:
-    name: tutorials.log
+    name: hebeitcm.log
 #    path: #日志文件存入的目录
