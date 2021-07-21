@@ -6,4 +6,7 @@ package com.lanqiao.hebeitcm.controller;
  */
 public class test {
     // 测试用，可以删掉
+    public static void main(String[] args) {
+        System.out.println("test  --->封剑武分支");
+    }
 }
