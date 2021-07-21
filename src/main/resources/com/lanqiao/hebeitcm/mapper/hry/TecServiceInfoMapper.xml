@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.hebeitcm.mapper.hry.TecServiceInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.hebeitcm.model.hry.TecServiceInfo">
+        <id property="itemID" column="itemID" jdbcType="INTEGER"/>
+        <id property="itemCode" column="itemCode" jdbcType="CHAR"/>
+        <result property="SERVICE_PROJECT" column="SERVICE_PROJECT" jdbcType="VARCHAR"/>
+        <result property="PROJECT_COST" column="PROJECT_COST" jdbcType="VARCHAR"/>
+        <result property="PHONE" column="PHONE" jdbcType="VARCHAR"/>
+        <result property="CONTACTS" column="CONTACTS" jdbcType="VARCHAR"/>
+        <result property="PROJECT_INTRODUCE" column="PROJECT_INTRODUCE" jdbcType="VARCHAR"/>
+        <result property="STATUS" column="STATUS" jdbcType="VARCHAR"/>
+        <result property="ORG_CODE" column="ORG_CODE" jdbcType="CHAR"/>
+        <result property="CREATER" column="CREATER" jdbcType="VARCHAR"/>
+        <result property="itemCreateAt" column="itemCreateAt" jdbcType="DATE"/>
+        <result property="UPDATER" column="UPDATER" jdbcType="VARCHAR"/>
+        <result property="itemUpdateAt" column="itemUpdateAt" jdbcType="DATE"/>
+        <result property="VISIT_NUM" column="VISIT_NUM" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,
+        itemCode,
+        SERVICE_PROJECT,
+        PROJECT_COST,
+        PHONE,
+        CONTACTS,
+        PROJECT_INTRODUCE,
+        STATUS,
+        ORG_CODE,
+        CREATER,
+        itemCreateAt,
+        UPDATER,
+        itemUpdateAt,
+        VISIT_NUM
+    </sql>
+
+    <!--查询信息-->
+    <select id="select" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from tb_industrial_develop_ser_pro
+        <where>
+            <if test="tec.SERVICE_PROJECT != null and tec.SERVICE_PROJECT.trim().length() > 0">
+                <bind name="Pattern" value="'%' + tec.SERVICE_PROJECT + '%'"/>
+                and ENAME LIKE #{Pattern}
+            </if>
+        </where>
+    </select>
+
+    <!--根据ID查询单条信息-->
+    <select id="selectByItemID" parameterType="int" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from tb_industrial_develop_ser_pro
+        where itemID=#{value}
+    </select>
+
+    <!--添加信息-->
+    <insert id="addTecServiceInfo" parameterType="com.lanqiao.hebeitcm.model.hry.TecServiceInfo">
+        insert into tb_industrial_develop_ser_pro(
+        itemCode,
+        SERVICE_PROJECT,
+        PROJECT_COST,
+        PHONE,
+        CONTACTS,
+        PROJECT_INTRODUCE,
+        STATUS,
+        ORG_CODE,
+        CREATER,
+        itemCreateAt,
+        UPDATER,
+        itemUpdateAt,
+        VISIT_NUM)
+        values (
+        #{itemCode},
+        #{SERVICE_PROJECT},
+        #{PROJECT_COST},
+        #{PHONE},
+        #{CONTACTS},
+        #{PROJECT_INTRODUCE},
+        #{STATUS},
+        #{ORG_CODE},
+        #{CREATER},
+        #{itemCreateAt},
+        #{UPDATER},
+        #{itemUpdateAt},
+        #{VISIT_NUM})
+    </insert>
+
+    <!--删除信息-->
+    <delete id="deleteTecServiceInfo" parameterType="int">
+        delete from tb_industrial_develop_ser_pro where itemID = #{itemID}
+    </delete>
+
+    <!--更新信息-->
+    <update id="updateTecServiceInfo" parameterType="com.lanqiao.hebeitcm.model.hry.TecServiceInfo">
+        update tb_industrial_develop_ser_pro
+        set SERVICE_PROJECT=#{SERVICE_PROJECT},
+        PROJECT_COST=#{PROJECT_COST},
+        PHONE= #{PHONE},
+        CONTACTS=#{CONTACTS},
+        PROJECT_INTRODUCE= #{PROJECT_INTRODUCE},
+        STATUS=#{STATUS},
+        ORG_CODE=#{ORG_CODE},
+        CREATER=#{CREATER},
+        itemCreateAt=#{itemCreateAt},
+        UPDATER=#{UPDATER},
+        itemUpdateAt=#{itemUpdateAt},
+        VISIT_NUM=#{VISIT_NUM}
+        where itemID=#{itemID}
+    </update>
+</mapper>
