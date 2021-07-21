@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.hebeitcm.mapper.yzy_CAR.Sci_achiMapper"><!---->
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.hebeitcm.model.yzy_CAR.Sci_achi">
+        <id property="itemID" column="itemID" jdbcType="INTEGER"/>
+        <id property="itemCode" column="itemCode" jdbcType="CHAR"/>
+        <result property="INDUSTRIAL_DEVELOP_NAME" column="INDUSTRIAL_DEVELOP_NAME" jdbcType="VARCHAR"/>
+        <result property="INDUSTRIAL_DEVELOP_LEADER" column="INDUSTRIAL_DEVELOP_LEADER" jdbcType="VARCHAR"/>
+        <result property="VISIT_NUM" column="VISIT_NUM" jdbcType="INTEGER"/>
+        <result property="INDUSTRIAL_DEVELOP_STATUS" column="INDUSTRIAL_DEVELOP_STATUS" jdbcType="VARCHAR"/>
+        <result property="CREATER" column="CREATER" jdbcType="VARCHAR"/>
+        <result property="itemCreateAt" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+        <result property="UPDATER" column="UPDATER" jdbcType="TIMESTAMP"/>
+        <result property="itemUpdateAt" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+        <result property="CONTEXT" column="CONTEXT" jdbcType="VARCHAR"/>
+        <result property="PROJECT_NAME" column="PROJECT_NAME" jdbcType="VARCHAR"/>
+        <result property="CONTACTS" column="CONTACTS" jdbcType="VARCHAR"/>
+        <result property="PHONE" column="PHONE" jdbcType="VARCHAR"/>
+        <result property="ORG_CODE" column="ORG_CODE" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        itemID,
+        itemCode,
+        INDUSTRIAL_DEVELOP_NAME,
+        INDUSTRIAL_DEVELOP_LEADER,
+        VISIT_NUM,
+        INDUSTRIAL_DEVELOP_STATUS,
+        CREATER,
+        itemCreateAt,
+        UPDATER,
+        itemUpdateAt,
+        CONTEXT,
+        PROJECT_NAME,
+        CONTACTS,
+        PHONE,
+        ORG_CODE
+    </sql>
+    <select id="selectForAll" resultMap="BaseResultMap" parameterType="Sci_achi">
+        select <include refid="Base_Column_List"/>
+        from tb_industrial_develop_sci_achi
+    </select>
+</mapper>
