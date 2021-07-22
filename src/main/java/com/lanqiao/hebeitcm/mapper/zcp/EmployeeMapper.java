@@ -10,9 +10,9 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface EmployeeMapper {
 
-    public Page<Employee> select(@Param("emp") Employee emp,
-                                 @Param("pageNum") int pageNum,
-                                 @Param("pageSize")int pageSize);
+    Page<Employee> select(@Param("emp") Employee emp,
+                          @Param("pageNum") int pageNum,
+                          @Param("pageSize") int pageSize);
 
-    public Employee selectById(Integer empno);
+    Employee selectById(Integer empno);
 }
