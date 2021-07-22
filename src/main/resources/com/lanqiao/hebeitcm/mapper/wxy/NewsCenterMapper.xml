@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.hebeitcm.mapper.wxy.NewsCenterMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.hebeitcm.model.wxy.DataInformation">
+        <id property="itemID" column="itemID" jdbcType="INTEGER"/>
+        <result property="data_title" column="data_title" jdbcType="VARCHAR"/>
+        <result property="data_author" column="data_author" jdbcType="VARCHAR"/>
+        <result property="data_source" column="data_source" jdbcType="VARCHAR"/>
+        <result property="visit_num" column="visit_num" jdbcType="INTEGER"/>
+        <result property="data_source" column="data_source" jdbcType="VARCHAR"/>
+        <result property="data_delayed_release" column="data_delayed_release" jdbcType="DATE"/>
+        <result property="data_status" column="data_status" jdbcType="VARCHAR"/>
+        <result property="data_type" column="data_type" jdbcType="VARCHAR"/>
+        <result property="release_or_not" column="release_or_not" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,
+        data_title,
+        data_author,
+        data_source,
+        visit_num,
+        data_content,
+        data_delayed_release
+    </sql>
+
+    <select id="selectByDataType" resultMap="BaseResultMap">
+        select itemID,data_title,data_content,data_delayed_release
+        from tb_culpro_data
+        where DATA_TYPE=#{value}
+    </select>
+    
+    <select id="dateDetails" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from tb_culpro_data
+        where itemID=#{value}
+    </select>
+
+    <update id="updateVisit">
+        update tb_culpro_data
+        set VISIT_NUM=#{visit_num}
+        where itemID=#{itemID}
+    </update>
+    
+</mapper>

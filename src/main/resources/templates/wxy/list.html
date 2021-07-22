@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 列表迭代 -->
+<table>
+<tr th:each="data:${dataList}">
+    <td th:text="${data.itemID}"></td>
+    <td th:text="${data.data_title}"></td>
+    <td th:utext="${#strings.abbreviate(data.data_content,50)}">...</td>
+    <td th:text="${data.data_delayed_release}"></td>
+</tr>
+</table>
+</body>
+</html>

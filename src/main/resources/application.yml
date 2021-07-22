@@ -2,7 +2,7 @@ spring:
   application:
     name: springboot-hebeitcm
   thymeleaf:
-    # prefix: classpath:/templates # 默认 thymeleaf 模板页面所在位置
+    #prefix: classpath:/templates # 默认 thymeleaf 模板页面所在位置
     cache: false
     encoding: utf-8
     # 热部署, 修改类和资源时不重启服务
@@ -37,7 +37,7 @@ spring:
 mybatis:
   #  config-location: classpath:mybatis/mybatis-config.xml
   #  设置实体类
-  type-aliases-package: com.lanqiao.hebeitcm.model
+  type-aliases-package: com.lanqiao.hebeitcm.model.wxy
 # 分页
 pagehelper:
   helperDialect: mysql
