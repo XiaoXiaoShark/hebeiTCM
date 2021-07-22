@@ -30,10 +30,10 @@
     <select id="selectByDataType" resultMap="BaseResultMap">
         select itemID,data_title,data_content,data_delayed_release
         from tb_culpro_data
-        where DATA_TYPE=#{value}
+        where DATA_TYPE=#{data_type}
     </select>
     
-    <select id="dateDetails" resultMap="BaseResultMap">
+    <select id="dataDetails" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"/>
         from tb_culpro_data
         where itemID=#{value}

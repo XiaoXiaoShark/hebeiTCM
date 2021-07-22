@@ -13,7 +13,11 @@ import java.util.List;
  */
 public interface NewsCenterMapper {
 
-    public List<DataInformation> selectByDataType(String data_type);
+    public Page<DataInformation> selectByDataType(@Param("pageNum") int pageNum,
+                                 @Param("pageSize")int pageSize,
+                                  @Param("data_type") String data_type);
+
+    public DataInformation dataDetails(int itemID);
 
     public void updateVisit(@Param("visit_num") int visit_num,
                             @Param("itemID") int itemID);

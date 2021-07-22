@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<table>
+    <tr th:each="data : ${dataList}">
+        <td th:text="${data.itemID}"></td>
+        <td th:text="${data.data_title}"></td>
+        <td th:utext="${#strings.abbreviate(data.data_content,10)}">...</td>
+        <td th:text="${data.data_delayed_release}"></td>
+        <td><a th:href="@{|/newscenter/${data.itemID}|}">详情</a></td>
+    </tr>
+</table>
+<ul>
+    <li><a th:href="@{/newscenter(pageNum=1)}"></a>第1页</li>
+    <li th:if="${dataList.pageNum!=1}" th:each="page : ${#numbers.sequence((dataList.pageNum -4 > 0 ? dataList.pageNum -4 : 1), dataList.pageNum -1)}">
+        <a th:href="@{newscenter(pageNum=${page})}" th:text="${page}"></a>
+    </li>
+    <li th:if="${dataList.pageNum!=dataList.pages}">
+        <a href="#" style="color: red;" th:text="${dataList.pageNum}"></a>
+    </li>
+    <li th:if="${dataList.pageNum!=dataList.pages}" th:each="page : ${#numbers.sequence(dataList.pageNum +1,(dataList.pageNum +4 < dataList.pages ? dataList.pageNum +4 : dataList.pages))}">
+        <a th:href="@{newscenter(pageNum=${page})}" th:text="${page}"></a>
+    </li>
+</ul>
 </body>
 </html>

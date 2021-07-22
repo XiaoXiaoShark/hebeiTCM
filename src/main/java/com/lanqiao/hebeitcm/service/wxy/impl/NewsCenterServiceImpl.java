@@ -1,6 +1,8 @@
 package com.lanqiao.hebeitcm.service.wxy.impl;
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.lanqiao.hebeitcm.mapper.wxy.NewsCenterMapper;
 import com.lanqiao.hebeitcm.model.wxy.DataInformation;
 import com.lanqiao.hebeitcm.service.wxy.NewsCenterService;
@@ -23,8 +25,13 @@ public class NewsCenterServiceImpl implements NewsCenterService {
     NewsCenterMapper newsCenterMapper;
 
     @Override
-    public List<DataInformation> selectByDataType(String data_type) {
-        return this.newsCenterMapper.selectByDataType(data_type);
+    public Page<DataInformation> selectByDataType(Integer pageNum, Integer pageSize, String data_type) {
+        return this.newsCenterMapper.selectByDataType(pageNum,pageSize,data_type);
+    }
+
+    @Override
+    public DataInformation dataDetails(int itemID) {
+        return this.newsCenterMapper.dataDetails(itemID);
     }
 
     @Override
