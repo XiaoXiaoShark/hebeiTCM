@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>产业发展</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link th:href="@{/files/产业发展/styles2.css}"
+          href="../../static/files/产业发展/styles2.css" type="text/css" rel="stylesheet"/>
+
+    <link   th:href="@{/component/bootstrap-3.3.7/css/bootstrap.min.css}"
+            href="../../static/component/bootstrap-3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+
+
+    <script th:src="@{/component/jquery-2.2.4.js}"
+            src="../../static/component/jquery-2.2.4.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script th:src="@{/component/bootstrap-3.3.7/js/bootstrap.min.js}"
+            src="../../static/component/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body style="width: 98%;height: 1000px">
+<div class="row clearfix">
+    <div class="col-md-2 column">
+    </div>
+    <div class="col-md-8 column" style="padding: 0px;height: 100%;">
+        <div class="row clearfix" style="border-left:#e4d9ce solid 1px;padding: 0px;border-right:#e4d9ce solid 1px ; height: 1000px">
+            <div  style="margin-top: 50px;padding: 0px; ">
+                <!--菜单-->
+                <div class="col-md-2 column">
+                    <ul id="menu">
+                        <li>
+                            <!--th:src 不用加静态目录static-->
+                            <img th:src="@{~/images/框架/u22.png}"
+                                 src="../../static/images/框架/u22.png" alt="">
+                            <span>资源分配</span>
+                        </li>
+                        <li>
+                            <img th:src="@{~/images/框架/u22.png}"
+                                 src="../../static/images/框架/u22.png" alt="">
+                            <span>科研成果</span>
+                        </li>
+                        <li>
+                            <img th:src="@{~/images/框架/u22.png}"
+                                 src="../../static/images/框架/u22.png" alt="">
+                            <span>合作交流</span>
+                        </li>
+                        <li>
+                            <img th:src="@{~/images/框架/u22.png}"
+                                 src="../../static/images/框架/u22.png" alt="">
+                            <span>人才招募</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-8 column" style="padding: 0px" >
+                    <!-- 资源分布-->
+                    <div id="resources_distribution">
+                        <ul id="menu_distribution">
+                            <li>
+                                <span>机构分布</span>
+                            </li>
+                            <li>
+                                <span>药材分布</span>
+                            </li>
+                        </ul>
+                        <!--机构分布-->
+                        <div class="col-md-10 col-md-offset-1" >
+                            <div id="resources_distribution_title_1">
+                                <span>平台已注册3000家机构分布图</span>
+                            </div>
+                            <div class="col-md-6">
+                                <img    th:src="@{/images/产业发展/u1281.png}"
+                                        src="../../static/images/产业发展/u1281.png" alt="">
+                                <div >
+
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-1 col-md-5">
+                                <table class="table table-hover table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            地市
+                                        </th>
+                                        <th>
+                                            机构数量
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr >
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            TB - Monthly
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>
+                                            TB - Monthly
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            3
+                                        </td>
+                                        <td>
+                                            TB - Monthly
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4
+                                        </td>
+                                        <td>
+                                            TB - Monthly
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 药材分布-->
+                        <div style="display:none;" class="col-md-offset-1  col-md-10">
+                            <div id="resources_distribution_title_2">
+                                <span>道地药材种植品种分布</span>
+                            </div>
+                            <div class="col-md-6">
+                                <img    th:src="@{/images/产业发展/u1281.png}"
+                                        src="../../static/images/产业发展/u1281.png" alt="">
+                                <div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-1 col-md-5">
+                                <table class="table table-hover table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            地市名称
+                                        </th>
+                                        <th>
+                                            种植品种
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr >
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            TB - Monthly
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>
+                                            TB - Monthly
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            3
+                                        </td>
+                                        <td>
+                                            TB - Monthly
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4
+                                        </td>
+                                        <td>
+                                            TB - Monthly
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 column">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2 column">
+
+    </div>
+</div>
+</body>
+</html>
