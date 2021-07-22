@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.hebeitcm.mapper.hry.TbIndustrialDevelopCooExcMapper">
+
+  <resultMap id="BaseResultMap" type="com.lanqiao.hebeitcm.model.hry.TbIndustrialDevelopCooExc">
+    <id column="itemID" jdbcType="INTEGER" property="itemid" />
+    <id column="itemCode" jdbcType="CHAR" property="itemcode" />
+    <result column="COOPERATION_EXCHANGE_NAME" jdbcType="VARCHAR" property="cooperationExchangeName" />
+    <result column="COOPERATION_EXCHANGE_LEADER" jdbcType="VARCHAR" property="cooperationExchangeLeader" />
+    <result column="VISIT_NUM" jdbcType="INTEGER" property="visitNum" />
+    <result column="PROJECT_INTRODUCE" jdbcType="VARCHAR" property="projectIntroduce" />
+    <result column="CONTACTS" jdbcType="VARCHAR" property="contacts" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="COOPERATIVE_ORG" jdbcType="VARCHAR" property="cooperativeOrg" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="itemCreateAt" jdbcType="TIMESTAMP" property="itemcreateat" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="itemUpdateAt" jdbcType="TIMESTAMP" property="itemupdateat" />
+    <result column="ORG_CODE" jdbcType="CHAR" property="orgCode" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    itemID, itemCode, COOPERATION_EXCHANGE_NAME, COOPERATION_EXCHANGE_LEADER, VISIT_NUM, 
+    PROJECT_INTRODUCE, CONTACTS, PHONE, COOPERATIVE_ORG, `STATUS`, CREATER, itemCreateAt,
+    UPDATER, itemUpdateAt, ORG_CODE
+  </sql>
+
+  <!--查询-->
+  <select id="select" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from tb_industrial_develop_coo_exc
+    <where>
+      <if test="TbI.cooperationExchangeName != null and TbI.cooperationExchangeName.trim().length() > 0">
+        <bind name="Pattern" value="'%' + TbI.cooperationExchangeName + '%'"/>
+        and COOPERATION_EXCHANGE_NAME LIKE #{Pattern}
+      </if>
+    </where>
+  </select>
+
+  <!--根据主键查询单条记录-->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_industrial_develop_coo_exc
+    where itemID = #{itemid,jdbcType=INTEGER}
+      and itemCode = #{itemcode,jdbcType=CHAR}
+  </select>
+
+  <!--删除-->
+  <delete id="deleteByPrimaryKey">
+    delete from tb_industrial_develop_coo_exc
+    where itemID = #{itemid,jdbcType=INTEGER}
+      and itemCode = #{itemcode,jdbcType=CHAR}
+  </delete>
+
+  <!--添加-->
+  <insert id="insert"  parameterType="com.lanqiao.hebeitcm.model.hry.TbIndustrialDevelopCooExc" >
+    insert into tb_industrial_develop_coo_exc (itemCode, COOPERATION_EXCHANGE_NAME, COOPERATION_EXCHANGE_LEADER, 
+      VISIT_NUM, PROJECT_INTRODUCE, CONTACTS, 
+      PHONE, COOPERATIVE_ORG, `STATUS`, 
+      CREATER, itemCreateAt, UPDATER, 
+      itemUpdateAt, ORG_CODE)
+    values (#{itemcode,jdbcType=CHAR}, #{cooperationExchangeName,jdbcType=VARCHAR}, #{cooperationExchangeLeader,jdbcType=VARCHAR}, 
+      #{visitNum,jdbcType=INTEGER}, #{projectIntroduce,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{cooperativeOrg,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{itemcreateat,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}, 
+      #{itemupdateat,jdbcType=TIMESTAMP}, #{orgCode,jdbcType=CHAR})
+  </insert>
+
+  <update id="update" parameterType="com.lanqiao.hebeitcm.model.hry.TbIndustrialDevelopCooExc">
+    update tb_industrial_develop_coo_exc
+    set COOPERATION_EXCHANGE_NAME = #{cooperationExchangeName,jdbcType=VARCHAR},
+      COOPERATION_EXCHANGE_LEADER = #{cooperationExchangeLeader,jdbcType=VARCHAR},
+      VISIT_NUM = #{visitNum,jdbcType=INTEGER},
+      PROJECT_INTRODUCE = #{projectIntroduce,jdbcType=VARCHAR},
+      CONTACTS = #{contacts,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      COOPERATIVE_ORG = #{cooperativeOrg,jdbcType=VARCHAR},
+      `STATUS` = #{status,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+      ORG_CODE = #{orgCode,jdbcType=CHAR}
+    where itemID = #{itemid,jdbcType=INTEGER}
+      and itemCode = #{itemcode,jdbcType=CHAR}
+  </update>
+</mapper>

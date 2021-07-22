@@ -51,10 +51,10 @@
     </select>
 
     <!--根据ID查询单条信息-->
-    <select id="selectByItemID" parameterType="int" resultMap="BaseResultMap">
+    <select id="selectByItemID"  resultMap="BaseResultMap">
         select <include refid="Base_Column_List"/>
         from tb_industrial_develop_ser_pro
-        where itemID=#{value}
+        where itemID=#{itemID} and itemCode=#{itemCode}
     </select>
 
     <!--添加信息-->
@@ -90,8 +90,9 @@
     </insert>
 
     <!--删除信息-->
-    <delete id="deleteTecServiceInfo" parameterType="int">
-        delete from tb_industrial_develop_ser_pro where itemID = #{itemID}
+    <delete id="deleteTecServiceInfo" >
+        delete from tb_industrial_develop_ser_pro
+        where itemID = #{itemID} and itemCode=#{itemCode}
     </delete>
 
     <!--更新信息-->
@@ -109,6 +110,6 @@
         UPDATER=#{UPDATER},
         itemUpdateAt=#{itemUpdateAt},
         VISIT_NUM=#{VISIT_NUM}
-        where itemID=#{itemID}
+        where itemID=#{itemID} and itemCode=#{itemCode}
     </update>
 </mapper>

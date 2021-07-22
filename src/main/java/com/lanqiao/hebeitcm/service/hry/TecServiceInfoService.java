@@ -13,14 +13,14 @@ public interface TecServiceInfoService {
     Page<TecServiceInfo> select(TecServiceInfo tecServiceInfo, int pageNum, int pageSize);
 
     // 添加
-    void addTecServiceInfo(TecServiceInfo tecServiceInfo);
+    int addTecServiceInfo(TecServiceInfo tecServiceInfo);
 
     // 删除
-    void deleteTecServiceInfo(int itemID);
+    int deleteTecServiceInfo(int itemID,String itemCode);
 
     // 更新
-    void updateTecServiceInfo(TecServiceInfo tecServiceInfo);
+    int updateTecServiceInfo(TecServiceInfo tecServiceInfo);
 
     // 根据ID查询单条信息
-    TecServiceInfo selectByItemID(int itemID);
+    TecServiceInfo selectByItemID(int itemID,String itemCode);
 }

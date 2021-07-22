@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/tecServiceInfo")
 public class TecServiceInfoController {
     @Autowired
-    TecServiceInfoService tecServiceInfoService;
+    private TecServiceInfoService tecServiceInfoService;
 
     // 查询
     @GetMapping
@@ -43,10 +43,10 @@ public class TecServiceInfoController {
     }
 
     // 根据ID查询单条信息
-    @GetMapping("/{itemID}")
-    public String selectByItemId(Model model, @PathVariable Integer itemID){
+    @GetMapping("/{itemID,itemCode}")
+    public String selectByItemId(Model model, @PathVariable Integer itemID,@PathVariable String itemCode){
 
-        final TecServiceInfo tecServiceInfo = this.tecServiceInfoService.selectByItemID(itemID);
+        final TecServiceInfo tecServiceInfo = this.tecServiceInfoService.selectByItemID(itemID,itemCode);
         model.addAttribute("tecServiceInfo",tecServiceInfo);
         return "/tecServiceInfo/tecServiceInfo_update";
     }
@@ -54,14 +54,14 @@ public class TecServiceInfoController {
     // 添加
     @PutMapping
     public String add(TecServiceInfo tecServiceInfo){
-        this.tecServiceInfoService.addTecServiceInfo(tecServiceInfo);
+        final int number = this.tecServiceInfoService.addTecServiceInfo(tecServiceInfo);
         return "redirect:/tecServiceInfo";
     }
 
     // 删除
     @DeleteMapping
-    public String delete(int itemID){
-        this.tecServiceInfoService.deleteTecServiceInfo(itemID);
+    public String delete(int itemID,String itemCode){
+        final int number = this.tecServiceInfoService.deleteTecServiceInfo(itemID,itemCode);
         return "redirect:/tecServiceInfo";
 
     }
@@ -69,7 +69,7 @@ public class TecServiceInfoController {
     // 更新
     @PostMapping
     public String update(TecServiceInfo tecServiceInfo){
-        this.tecServiceInfoService.updateTecServiceInfo(tecServiceInfo);
+        final int number = this.tecServiceInfoService.updateTecServiceInfo(tecServiceInfo);
         return "redirect:/tecServiceInfo";
     }
 

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 /**
  * @author 黄瑞颖
  * @create 2021-07-21 15:41
@@ -19,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class TecServiceInfoServiceImpl implements TecServiceInfoService {
 
     @Autowired
-    TecServiceInfoMapper tecServiceInfoMapper;
+    private TecServiceInfoMapper tecServiceInfoMapper;
 
     // 查询
     @Override
@@ -29,25 +31,29 @@ public class TecServiceInfoServiceImpl implements TecServiceInfoService {
 
     // 添加
     @Override
-    public void addTecServiceInfo(TecServiceInfo tecServiceInfo) {
-        this.tecServiceInfoMapper.addTecServiceInfo(tecServiceInfo);
+    public int addTecServiceInfo(TecServiceInfo tecServiceInfo) {
+
+        String uuid = UUID.randomUUID().toString();
+        tecServiceInfo.setItemCode(uuid);
+
+       return this.tecServiceInfoMapper.addTecServiceInfo(tecServiceInfo);
     }
 
     // 删除
     @Override
-    public void deleteTecServiceInfo(int itemID) {
-        this.tecServiceInfoMapper.deleteTecServiceInfo(itemID);
+    public int deleteTecServiceInfo(int itemID,String itemCode) {
+       return this.tecServiceInfoMapper.deleteTecServiceInfo(itemID,itemCode);
     }
 
     // 更新
     @Override
-    public void updateTecServiceInfo(TecServiceInfo tecServiceInfo) {
-        this.tecServiceInfoMapper.updateTecServiceInfo(tecServiceInfo);
+    public int updateTecServiceInfo(TecServiceInfo tecServiceInfo) {
+       return   this.tecServiceInfoMapper.updateTecServiceInfo(tecServiceInfo);
     }
 
     // 根据ID查询单条信息
     @Override
-    public TecServiceInfo selectByItemID(int itemID) {
-        return this.tecServiceInfoMapper.selectByItemID(itemID);
+    public TecServiceInfo selectByItemID(int itemID,String itemCode) {
+        return this.tecServiceInfoMapper.selectByItemID(itemID,itemCode);
     }
 }
