@@ -8,7 +8,8 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface TbIndustrialDevelopCooExcMapper {
 
-    Page<TbIndustrialDevelopCooExc> select(@Param("TbI") TbIndustrialDevelopCooExc tbIndustrialDevelopCooExc, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+    Page<TbIndustrialDevelopCooExc> select(@Param("TbI") TbIndustrialDevelopCooExc tbIndustrialDevelopCooExc,
+                                           @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     TbIndustrialDevelopCooExc selectByPrimaryKey(Integer itemid,String itemcode);
 

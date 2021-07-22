@@ -12,7 +12,8 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface TecServiceInfoMapper {
     // 查询
-    Page<TecServiceInfo> select(@Param("tec") TecServiceInfo tecServiceInfo, @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
+    Page<TecServiceInfo> select(@Param("tec") TecServiceInfo tecServiceInfo,
+                                @Param("pageNum") int pageNum, @Param("pageSize") int pageSize);
 
     // 添加
     int addTecServiceInfo(TecServiceInfo tecServiceInfo);

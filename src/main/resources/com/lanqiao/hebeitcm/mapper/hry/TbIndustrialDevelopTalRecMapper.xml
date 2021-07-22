@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.hebeitcm.mapper.hry.TbIndustrialDevelopTalRecMapper">
+
+  <resultMap id="BaseResultMap" type="com.lanqiao.hebeitcm.model.hry.TbIndustrialDevelopTalRec">
+    <id column="itemID" jdbcType="INTEGER" property="itemid" />
+    <id column="itemCode" jdbcType="CHAR" property="itemcode" />
+    <result column="WORKPLACE" jdbcType="VARCHAR" property="workplace" />
+    <result column="RECRUITMENT_COUNT" jdbcType="VARCHAR" property="recruitmentCount" />
+    <result column="POST_DUTY" jdbcType="VARCHAR" property="postDuty" />
+    <result column="POST_DESCR" jdbcType="VARCHAR" property="postDescr" />
+    <result column="SALARY" jdbcType="VARCHAR" property="salary" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="CREATER" jdbcType="VARCHAR" property="creater" />
+    <result column="itemCreateAt" jdbcType="TIMESTAMP" property="itemcreateat" />
+    <result column="UPDATER" jdbcType="VARCHAR" property="updater" />
+    <result column="itemUpdateAt" jdbcType="TIMESTAMP" property="itemupdateat" />
+    <result column="RECRUITMENT_TITLE" jdbcType="VARCHAR" property="recruitmentTitle" />
+    <result column="RECRUITMENT_POSITION" jdbcType="VARCHAR" property="recruitmentPosition" />
+    <result column="EDUCATION" jdbcType="VARCHAR" property="education" />
+    <result column="EMALI" jdbcType="VARCHAR" property="emali" />
+    <result column="ORG_CODE" jdbcType="CHAR" property="orgCode" />
+    <result column="VISIT_NUM" jdbcType="INTEGER" property="visitNum" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    itemID, itemCode, WORKPLACE, RECRUITMENT_COUNT, POST_DUTY, POST_DESCR, SALARY, `STATUS`, 
+    CREATER, itemCreateAt, UPDATER, itemUpdateAt, RECRUITMENT_TITLE, RECRUITMENT_POSITION, 
+    EDUCATION, EMALI, ORG_CODE, VISIT_NUM
+  </sql>
+
+  <!--查询-->
+  <select id="select" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from tb_industrial_develop_tal_rec
+    <where>
+      <if test="talRec.recruitmentPosition != null and talRec.recruitmentPosition.trim().length() > 0">
+        <bind name="Pattern" value="'%' + talRec.recruitmentPosition + '%'"/>
+        and recruitmentPosition LIKE #{Pattern}
+      </if>
+    </where>
+  </select>
+
+  <!--根据主键查询单条记录-->
+  <select id="selectByPrimaryKey"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_industrial_develop_tal_rec
+    where itemID = #{itemid,jdbcType=INTEGER}
+      and itemCode = #{itemcode,jdbcType=CHAR}
+  </select>
+
+  <!--删除-->
+  <delete id="deleteByPrimaryKey">
+    delete from tb_industrial_develop_tal_rec
+    where itemID = #{itemid,jdbcType=INTEGER}
+      and itemCode = #{itemcode,jdbcType=CHAR}
+  </delete>
+
+  <!--添加-->
+  <insert id="insert" parameterType="com.lanqiao.hebeitcm.model.hry.TbIndustrialDevelopTalRec" useGeneratedKeys="true">
+    insert into tb_industrial_develop_tal_rec (itemCode, WORKPLACE, RECRUITMENT_COUNT, 
+      POST_DUTY, POST_DESCR, SALARY, 
+      `STATUS`, CREATER, itemCreateAt, 
+      UPDATER, itemUpdateAt, RECRUITMENT_TITLE, 
+      RECRUITMENT_POSITION, EDUCATION, EMALI, 
+      ORG_CODE, VISIT_NUM)
+    values (#{itemcode,jdbcType=CHAR}, #{workplace,jdbcType=VARCHAR}, #{recruitmentCount,jdbcType=VARCHAR}, 
+      #{postDuty,jdbcType=VARCHAR}, #{postDescr,jdbcType=VARCHAR}, #{salary,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, #{itemcreateat,jdbcType=TIMESTAMP}, 
+      #{updater,jdbcType=VARCHAR}, #{itemupdateat,jdbcType=TIMESTAMP}, #{recruitmentTitle,jdbcType=VARCHAR}, 
+      #{recruitmentPosition,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{emali,jdbcType=VARCHAR}, 
+      #{orgCode,jdbcType=CHAR}, #{visitNum,jdbcType=INTEGER})
+  </insert>
+
+  <!--更新-->
+  <update id="updateByPrimaryKey" parameterType="com.lanqiao.hebeitcm.model.hry.TbIndustrialDevelopTalRec">
+    update tb_industrial_develop_tal_rec
+    set WORKPLACE = #{workplace,jdbcType=VARCHAR},
+      RECRUITMENT_COUNT = #{recruitmentCount,jdbcType=VARCHAR},
+      POST_DUTY = #{postDuty,jdbcType=VARCHAR},
+      POST_DESCR = #{postDescr,jdbcType=VARCHAR},
+      SALARY = #{salary,jdbcType=VARCHAR},
+      `STATUS` = #{status,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      itemCreateAt = #{itemcreateat,jdbcType=TIMESTAMP},
+      UPDATER = #{updater,jdbcType=VARCHAR},
+      itemUpdateAt = #{itemupdateat,jdbcType=TIMESTAMP},
+      RECRUITMENT_TITLE = #{recruitmentTitle,jdbcType=VARCHAR},
+      RECRUITMENT_POSITION = #{recruitmentPosition,jdbcType=VARCHAR},
+      EDUCATION = #{education,jdbcType=VARCHAR},
+      EMALI = #{emali,jdbcType=VARCHAR},
+      ORG_CODE = #{orgCode,jdbcType=CHAR},
+      VISIT_NUM = #{visitNum,jdbcType=INTEGER}
+    where itemID = #{itemid,jdbcType=INTEGER}
+      and itemCode = #{itemcode,jdbcType=CHAR}
+  </update>
+</mapper>
