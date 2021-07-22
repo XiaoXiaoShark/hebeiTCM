@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<style type="text/css">
+    .code
+    {
+        font-family:Arial;
+        font-style:italic;    /*字体倾斜*/
+        color:blue;
+        float: left;
+        font-size:30px;
+        border:0;
+        padding:2px 3px;
+        letter-spacing:3px;
+        font-weight:bolder;
+        cursor:pointer;
+        width:150px;
+        height:60px;
+        line-height:60px;
+        text-align:center;
+        vertical-align:middle;
+    }
+</style>
+    <script type="text/javascript">
+        var code;  //定义一个变量，用来保存验证码
+        //生成验证码
+        function createCode() {
+            code = "";
+            var codeLength = 4; //验证码的长度
+            var checkCode = document.getElementById("checkCode");
+            var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+            'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); //所有候选组成验证码的字符，当然也可以用中文的
+            for(var i = 0; i < codeLength; i++) {
+            var charNum = Math.floor(Math.random() * codeChars.length);
+            code += codeChars[charNum];
+            }
+            if(checkCode) {
+            checkCode.innerHTML = code;
+            }
+            // input输入框要这样修改才生效
+            document.getElementById('code').setAttribute('value', code);
+        }
+</script>
+<body onload="createCode()">
+<h1>登录社区</h1>
+<form method="post" th:action="@{/login}">
+    <!--/*@thymesVar id="error" type="error"*/-->
+    <p style="color:red;" th:text="${error}">
+        <!--提示信息-->
+    </p>
+    <p>
+        账号：<input type="text" name="username" >
+    </p>
+    <p>
+        密码：<input type="password" name="password" >
+    </p>
+    <p>
+        <!--传验证码  -->
+        <input style="float: left;visibility: hidden;width: 0px;height:0px"  id="code"  type="text" name="code" >
+        <div class="code"  type="text" id="checkCode"  onclick="createCode()"  ></div>
+        验证码：<input  type="text"  name="verifyCode">
+    </p>
+    <p>
+        <input type="checkbox" name="remember-me"> 记住我
+    </p>
+    <p>
+        <input   type="submit" value="登录">
+    </p>
+</form>
+</body>
+</html>

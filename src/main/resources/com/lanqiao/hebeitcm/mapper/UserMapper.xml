@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.hebeitcm.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.hebeitcm.model.User">
+        <id property="itemid" column="itemID" jdbcType="INTEGER"/>
+        <id property="itemcode" column="itemCode" jdbcType="CHAR"/>
+        <result property="orgCode" column="ORG_CODE" jdbcType="CHAR"/>
+        <result property="username" column="USERNAME" jdbcType="VARCHAR"/>
+        <result property="password" column="PASSWORD" jdbcType="VARCHAR"/>
+        <result property="salt" column="SALT" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+        <result property="gender" column="GENDER" jdbcType="VARCHAR"/>
+        <result property="idcardType" column="IDCARD_TYPE" jdbcType="VARCHAR"/>
+        <result property="idcardNo" column="IDCARD_NO" jdbcType="VARCHAR"/>
+        <result property="email" column="EMAIL" jdbcType="VARCHAR"/>
+        <result property="state" column="STATE" jdbcType="VARCHAR"/>
+        <result property="contacts" column="CONTACTS" jdbcType="VARCHAR"/>
+        <result property="mobilephone" column="mobilePhone" jdbcType="VARCHAR"/>
+        <result property="creater" column="CREATER" jdbcType="VARCHAR"/>
+        <result property="itemcreateat" column="itemCreateAt" jdbcType="TIMESTAMP"/>
+        <result property="updater" column="UPDATER" jdbcType="VARCHAR"/>
+        <result property="itemupdateat" column="itemUpdateAt" jdbcType="TIMESTAMP"/>
+        <result property="cityid" column="CITYID" jdbcType="CHAR"/>
+        <result property="type" column="TYPE" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        itemID,itemCode,ORG_CODE,
+        USERNAME,PASSWORD,SALT,
+        NAME,GENDER,IDCARD_TYPE,
+        IDCARD_NO,EMAIL,STATE,
+        CONTACTS,mobilePhone,CREATER,
+        itemCreateAt,UPDATER,itemUpdateAt,
+        CITYID,TYPE,PORTRAIT
+    </sql>
+
+    <select id="selectByName" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from user
+        where  username=#{username}
+    </select>
+
+    <insert id="insertUser">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+        </selectKey>
+        insert into USER() value ()
+    </insert>
+</mapper>
